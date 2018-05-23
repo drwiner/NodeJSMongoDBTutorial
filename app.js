@@ -16,6 +16,8 @@ var navMenu=[
            ];
 		   
 app.use(express.static('public'));//making public directory as static diectory   
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended : true }));
   
 app.set('views','./src/views');   
   
@@ -27,6 +29,7 @@ var projectsRouter=require('./src/routes/projectsRoute')(navMenu);
 var booksRouter=require('./src/routes/booksRoute')(navMenu);  
 var contactRouter=require('./src/routes/contactRoute')(navMenu);  
 var usersRouter=require('./src/routes/registrationRoute')(navMenu);
+var loginRouter=require('./src/routes/loginRoute')(navMenu); 
   
   
 app.use('/articles',articlesRouter);  
@@ -34,6 +37,7 @@ app.use('/projects',projectsRouter);
 app.use('/books',booksRouter);  
 app.use('/contact',contactRouter);  
 app.use('/register',usersRouter);
+app.use('/login',loginRouter);
   
 app.get('/',function(req,res){  
     res.render('index', {  
