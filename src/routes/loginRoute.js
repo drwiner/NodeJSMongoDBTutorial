@@ -6,7 +6,7 @@ var l_router=function(navMenu){
         .post(passport.authenticate('local',{  
             failureRedirect:'/login'  
         }),function(req,res){  
-                res.redirect('/articles')  
+                res.redirect('/myprofile')  
             }  
         )  
         .get(function(req,res){  
