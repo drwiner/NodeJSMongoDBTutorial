@@ -1,0 +1,23 @@
+<!--Binding Articles Data-->  
+        <%for(var p=0;p<articles.length;p++){%>  
+            <div class="row">  
+                <div class="col-md-3">  
+                    <a href="#" class="text-center">  
+                            <img class="img-responsive author-img" src="<%=articles[p].AuthorImageUrl%>" alt="">  
+                    </a>  
+                </div>  
+                <div class="col-md-9">  
+                    <h2><%=articles[p].Title%></h2>  
+                    <h5>  
+                        <i class='glyphicon glyphicon-folder-open'></i> <span style='margin:0 10px 0 5px;'><%=articles[p].Category%></span>  
+                        <i class='glyphicon glyphicon-calendar'></i> <span style='margin:0 10px 0 5px;'><%=articles[p].CreatedDate.toDateString()%></span>  
+                    </h5>  
+                    <h5>  
+                        <i class='glyphicon glyphicon-user'></i> <a href="javascript:void(0)" style='margin:0 10px 0 5px;'><%=articles[p].Author%></a>  
+                    </h5>  
+                    <p><%=articles[p].ShortDescription%></p>  
+                    <a class="btn btn-primary" href="#">Read Article <span class="glyphicon glyphicon-chevron-right"></span></a>  
+                </div>  
+            </div>  
+            <hr/>  
+        <%}%>  
