@@ -30,7 +30,22 @@ var booksRouter=require('./src/routes/booksRoute')(navMenu);
 var contactRouter=require('./src/routes/contactRoute')(navMenu);  
 var usersRouter=require('./src/routes/registrationRoute')(navMenu);
 var loginRouter=require('./src/routes/loginRoute')(navMenu); 
+var cookieParser=require('cookie-parser');  
+var passport=require('passport');  
+var session=require('express-session');  
+var profileRouter=require('./src/routes/profileRoute')(navMenu);
   
+// must go, CookieParser, then Session, then Passport, then Router
+app.use(cookieParser());  
+
+app.use(session({
+	secret:'c-sharpcorner',
+	resave: true,
+	saveUninitialized: true
+	}));  
+
+require('./src/configuration/passport')(app);  
+
   
 app.use('/articles',articlesRouter);  
 app.use('/projects',projectsRouter);  
@@ -38,7 +53,11 @@ app.use('/books',booksRouter);
 app.use('/contact',contactRouter);  
 app.use('/register',usersRouter);
 app.use('/login',loginRouter);
-  
+app.use('/myprofile',profileRouter);
+
+
+
+
 app.get('/',function(req,res){  
     res.render('index', {  
         title:'Node.js By David R. Winer',  
